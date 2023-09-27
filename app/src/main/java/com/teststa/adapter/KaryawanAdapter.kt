@@ -28,7 +28,7 @@ class KaryawanViewHolder(
 class KaryawanAdapter : BaseRecyclerViewAdapter<KaryawanViewHolder, Int, Karyawan>() {
 
     var onClickItem: ((View, Karyawan) -> Unit)? = null
-    var selectedItemView: View? = null
+    private var selectedItemView: View? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): KaryawanViewHolder =
         KaryawanViewHolder(

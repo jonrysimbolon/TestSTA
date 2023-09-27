@@ -45,10 +45,7 @@ class MainActivity : AppCompatActivity() {
             listKaryawan = searchResult(dbHelper, db)
             karyawanAdapter.updateData(listKaryawan)
 
-            karyawanAdapter.onClickItem = { view, data ->
-                //selectedItemView?.setBackgroundColor(Color.TRANSPARENT)
-                view.setBackgroundColor(Color.YELLOW)
-                //selectedItemView = view
+            karyawanAdapter.onClickItem = { _, data ->
                 selectionData = data
             }
 
