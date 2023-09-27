@@ -1,18 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:padding="20dp"
+    tools:context=".ui.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/formI"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_weight=".7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:text="Form 1 (Please rotate your phone)"/>
+
+            <Button
+                android:layout_weight=".3"
+                android:text="List User Github"
+                android:id="@+id/userGithubBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            android:textSize="22sp"
+            android:paddingTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/formI"
+            android:id="@+id/filterDataTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="Filter Data: "/>
+
+        <TextView
+            android:paddingTop="10dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/filterDataTxt"
+            android:id="@+id/nmKaryawanTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama karyawan"/>
+
+
+        <TextView
+            android:paddingTop="10dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/nmKaryawanTxt"
+            android:id="@+id/usiaTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Usia"/>
+
+
+        <TextView
+            android:paddingTop="10dp"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@id/usiaTxt"
+            android:id="@+id/tglMskKrjTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tgl Masuk Kerja"/>
+
+
+        <EditText
+            android:hint="nama karyawan"
+            android:layout_marginStart="20dp"
+            android:id="@+id/nmKaryawanTxtET"
+            app:layout_constraintStart_toEndOf="@id/nmKaryawanTxt"
+            app:layout_constraintTop_toTopOf="@id/nmKaryawanTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:inputType="number"
+            android:gravity="end"
+            android:hint="usia"
+            android:id="@+id/usiaTxtET"
+            app:layout_constraintStart_toStartOf="@id/nmKaryawanTxtET"
+            app:layout_constraintEnd_toEndOf="@id/nmKaryawanTxtET"
+            app:layout_constraintTop_toTopOf="@id/usiaTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:hint="tgl masuk kerja"
+            android:id="@+id/tglMskKrjTxtET"
+            app:layout_constraintEnd_toEndOf="@id/nmKaryawanTxtET"
+            app:layout_constraintStart_toStartOf="@id/nmKaryawanTxtET"
+            app:layout_constraintTop_toTopOf="@id/tglMskKrjTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="@id/nmKaryawanTxt"
+            app:layout_constraintStart_toEndOf="@id/nmKaryawanTxtET"
+            android:id="@+id/sd1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s/d"/>
+
+        <TextView
+            android:paddingTop="10dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/sd1"
+            app:layout_constraintTop_toTopOf="@id/usiaTxtET"
+            android:id="@+id/sd2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s/d"/>
+
+        <TextView
+            android:paddingTop="10dp"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/sd1"
+            app:layout_constraintTop_toTopOf="@id/tglMskKrjTxtET"
+            android:id="@+id/sd3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="s/d"/>
+
+        <EditText
+            android:hint="nama karyawan"
+            android:layout_marginStart="20dp"
+            android:id="@+id/nmKaryawanEndTxtET"
+            app:layout_constraintStart_toEndOf="@id/sd1"
+            app:layout_constraintTop_toTopOf="@id/nmKaryawanTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:inputType="number"
+            android:gravity="end"
+            android:hint="usia"
+            android:id="@+id/usiaEndTxtET"
+            app:layout_constraintStart_toStartOf="@id/nmKaryawanEndTxtET"
+            app:layout_constraintEnd_toEndOf="@id/nmKaryawanEndTxtET"
+            app:layout_constraintTop_toTopOf="@id/usiaTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+        <EditText
+            android:hint="tgl masuk kerja"
+            android:id="@+id/tglMskKrjEndTxtET"
+            app:layout_constraintEnd_toEndOf="@id/nmKaryawanEndTxtET"
+            app:layout_constraintStart_toStartOf="@id/nmKaryawanEndTxtET"
+            app:layout_constraintTop_toTopOf="@id/tglMskKrjTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"/>
+
+
+        <Button
+            android:layout_marginStart="20dp"
+            app:layout_constraintTop_toTopOf="@id/nmKaryawanEndTxtET"
+            app:layout_constraintStart_toEndOf="@id/nmKaryawanEndTxtET"
+            android:text="Search"
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/tglMskKrjTxt"
+            android:id="@+id/layoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:text="New"
+                android:id="@+id/newBtn"
+                android:layout_weight=".25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"/>
+
+            <Button
+                android:text="Edit"
+                android:layout_weight=".25"
+                android:id="@+id/editBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"/>
+
+            <Button
+                android:text="Delete"
+                android:layout_weight=".25"
+                android:id="@+id/deleteBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"/>
+
+            <Button
+                android:text="Close"
+                android:layout_weight=".25"
+                android:id="@+id/closeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_marginTop="10dp"
+            app:layout_constraintTop_toBottomOf="@id/layoutButton"
+            android:id="@+id/titleTbl"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:id="@+id/idtblTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="ID" />
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:id="@+id/nmKaryawantblTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="Nama"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:id="@+id/tglMskKrjtblTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="Tgl Masuk Kerja"/>
+
+            <TextView
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:id="@+id/usiatblTxt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".25"
+                android:text="Usia"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:nestedScrollingEnabled="false"
+            android:layout_marginTop="10dp"
+            android:id="@+id/listKaryawanRv"
+            app:layout_constraintTop_toBottomOf="@id/titleTbl"
+            android:layout_width="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_karyawan"
+            tools:itemCount="10"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.core.widget.NestedScrollView>

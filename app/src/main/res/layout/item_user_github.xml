@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_marginEnd="10dp"
+        android:textSize="15sp"
+        android:id="@+id/idTxt"
+        android:layout_weight=".25"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="ID" />
+
+    <TextView
+        android:layout_marginEnd="10dp"
+        android:textSize="15sp"
+        android:id="@+id/nmUserGithub"
+        android:layout_weight=".25"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Nama"/>
+
+    <TextView
+        android:layout_marginEnd="10dp"
+        android:textSize="15sp"
+        android:id="@+id/htmlTxt"
+        android:layout_weight=".4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Html"/>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>
