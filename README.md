@@ -29,4 +29,4 @@ landscape, dan tidak meng-improvisasinya.
 
 [X] FORM II
 
-[ ] Page List user from github
+[X] Page List user from github
