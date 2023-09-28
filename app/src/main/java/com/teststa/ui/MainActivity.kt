@@ -3,30 +3,33 @@ package com.teststa.ui
 import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.os.Bundle
-import android.widget.Toast
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.teststa.adapter.KaryawanAdapter
 import com.teststa.data.Karyawan
 import com.teststa.data.KaryawanDatabaseHelper
+import com.teststa.data.Variable.DEFAULT_DATE_DB
+import com.teststa.data.Variable.DEFAULT_DATE_UI
+import com.teststa.data.alertBelumMemilihData
+import com.teststa.data.showDatePickerDialog
 import com.teststa.databinding.ActivityMainBinding
-import com.teststa.ui.Form2.Companion.MY_DATA
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private var dbHelper: KaryawanDatabaseHelper? = null
     private var db: SQLiteDatabase? = null
-
     private val karyawanAdapter: KaryawanAdapter by lazy {
         KaryawanAdapter()
     }
-
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater)
     }
-
     private var listKaryawan: List<Karyawan> = emptyList()
-
     private var selectionData: Karyawan? = null
+    private var tglStartFormatUi: String = DEFAULT_DATE_UI
+    private var tglStartFormatDb: String = DEFAULT_DATE_DB
+    private var tglEndFormatUi: String = DEFAULT_DATE_UI
+    private var tglEndFormatDb: String = DEFAULT_DATE_DB
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,42 +51,14 @@ class MainActivity : AppCompatActivity() {
                 selectionData = data
             }
 
-            searchBtn.setOnClickListener {
-                listKaryawan = searchResult(dbHelper, db)
-                karyawanAdapter.updateData(listKaryawan)
-            }
-
-            closeBtn.setOnClickListener {
-                finish()
-            }
-
-            newBtn.setOnClickListener {
-                startActivity(Intent(this@MainActivity, Form2::class.java))
-            }
-
-            editBtn.setOnClickListener {
-                if(selectionData != null){
-                    val intent = Intent(this@MainActivity, Form2::class.java)
-                    intent.putExtra(MY_DATA ,selectionData)
-                    startActivity(intent)
-                }else{
-                    Toast.makeText(this@MainActivity, "Silahkan memilih data terlebih dahulu", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            deleteBtn.setOnClickListener {
-                if(selectionData != null){
-                    dbHelper?.deleteFromKaryawanTbl(db!!, selectionData!!.idKaryawan)
-                    listKaryawan = listKaryawan.filter { it.idKaryawan != selectionData!!.idKaryawan }
-                    karyawanAdapter.updateData(listKaryawan)
-                }else{
-                    Toast.makeText(this@MainActivity, "Silahkan memilih data terlebih dahulu", Toast.LENGTH_SHORT).show()
-                }
-            }
-
-            userGithubBtn.setOnClickListener {
-                startActivity(Intent(this@MainActivity, ListUserGithub::class.java))
-            }
+            tglMskKrjTxtET.setOnClickListener(this@MainActivity)
+            tglMskKrjEndTxtET.setOnClickListener(this@MainActivity)
+            searchBtn.setOnClickListener(this@MainActivity)
+            closeBtn.setOnClickListener(this@MainActivity)
+            newBtn.setOnClickListener(this@MainActivity)
+            editBtn.setOnClickListener(this@MainActivity)
+            deleteBtn.setOnClickListener(this@MainActivity)
+            userGithubBtn.setOnClickListener(this@MainActivity)
         }
     }
 
@@ -96,8 +71,6 @@ class MainActivity : AppCompatActivity() {
             val nmEnd = nmKaryawanEndTxtET.text.toString()
             val usiaStart = usiaTxtET.text.toString()
             val usiaEnd = usiaEndTxtET.text.toString()
-            val tglStart = tglMskKrjTxtET.text.toString()
-            val tglEnd = tglMskKrjEndTxtET.text.toString()
 
             return db?.let {
                 dbHelper?.selectBaseOnFromKaryawanTbl(
@@ -106,8 +79,8 @@ class MainActivity : AppCompatActivity() {
                     nmEnd,
                     usiaStart,
                     usiaEnd,
-                    tglStart,
-                    tglEnd
+                    tglStartFormatDb,
+                    tglEndFormatDb
                 )
             } ?: emptyList()
         }
@@ -117,5 +90,68 @@ class MainActivity : AppCompatActivity() {
         db?.close()
         dbHelper = null
         super.onDestroy()
+    }
+
+    override fun onClick(v: View?) {
+        binding.apply {
+            when (v) {
+                closeBtn -> {
+                    finish()
+                }
+
+                tglMskKrjTxtET -> {
+                    showDatePickerDialog(this@MainActivity) { sqlFormat, uiFormat ->
+                        tglStartFormatDb = sqlFormat
+                        tglStartFormatUi = uiFormat
+                        tglMskKrjTxtET.setText(tglStartFormatUi)
+                    }
+                }
+
+                tglMskKrjEndTxtET -> {
+                    showDatePickerDialog(this@MainActivity){ sqlFormat, uiFormat ->
+                        tglEndFormatDb = sqlFormat
+                        tglEndFormatUi = uiFormat
+                        tglMskKrjEndTxtET.setText(tglEndFormatUi)
+                    }
+                }
+
+                searchBtn -> {
+                    listKaryawan = searchResult(dbHelper, db)
+                    karyawanAdapter.updateData(listKaryawan)
+                }
+
+                newBtn -> {
+                    startActivity(Intent(this@MainActivity, Form2Activity::class.java))
+                }
+
+                editBtn -> {
+                    if (selectionData != null) {
+                        Intent(this@MainActivity, Form2Activity::class.java)
+                            .apply {
+                                putExtra(Form2Activity.MY_DATA, selectionData)
+                            }.also {
+                                startActivity(it)
+                            }
+                    } else {
+                        alertBelumMemilihData(this@MainActivity)
+                    }
+                }
+
+                deleteBtn -> {
+                    if (selectionData != null) {
+                        dbHelper?.deleteFromKaryawanTbl(db!!, selectionData!!.idKaryawan)
+                        listKaryawan =
+                            listKaryawan.filter { it.idKaryawan != selectionData!!.idKaryawan }
+                        karyawanAdapter.updateData(listKaryawan)
+                    } else {
+                        alertBelumMemilihData(this@MainActivity)
+                    }
+                }
+
+                userGithubBtn -> {
+                    startActivity(Intent(this@MainActivity, ListUserGithubActivity::class.java))
+                }
+            }
+        }
     }
 }

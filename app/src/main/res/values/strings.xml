@@ -1,3 +1,29 @@
 <resources>
     <string name="app_name">TestSTA</string>
+    <string name="silahkan_memilih_data">Silahkan memilih data terlebih dahulu.</string>
+    <string name="pastikan_data">Pastikan tidak ada data yang kosong</string>
+    <string name="update">Update</string>
+    <string name="save">Save</string>
+    <string name="name">Nama</string>
+    <string name="form2">Form II</string>
+    <string name="entry_data">"Entry Data: "</string>
+    <string name="id">ID</string>
+    <string name="html">Html</string>
+    <string name="error">Error</string>
+    <string name="karyawan_name">Nama karyawan</string>
+    <string name="usia">Usia</string>
+    <string name="tgl_msk_kerja">Tgl Masuk Kerja</string>
+    <string name="karyawan_name_small">nama karyawan</string>
+    <string name="usia_small">usia</string>
+    <string name="tgl_msk_kerja_small">tgl masuk kerja</string>
+    <string name="warn_main_1">*) Untuk pencarian nama, \'John\' dengan \'john\' itu berbeda</string>
+    <string name="warn_main_2">Form 1 (Please rotate your phone)</string>
+    <string name="list_user_github">List User Github</string>
+    <string name="filter_date">"Filter Data: "</string>
+    <string name="sd">s/d</string>
+    <string name="search">Search</string>
+    <string name="edit">Edit</string>
+    <string name="novel">New</string>
+    <string name="delete">Delete</string>
+    <string name="close">Close</string>
 </resources>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_main"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -24,11 +25,11 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textSize="25sp"
-                android:text="Form 1 (Please rotate your phone)"/>
+                android:text="@string/warn_main_2"/>
 
             <Button
                 android:layout_weight=".3"
-                android:text="List User Github"
+                android:text="@string/list_user_github"
                 android:id="@+id/userGithubBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -38,45 +39,59 @@
         <TextView
             android:textSize="22sp"
             android:paddingTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/formI"
             android:id="@+id/filterDataTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="Filter Data: "/>
+            android:text="@string/filter_date"/>
 
         <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            android:textSize="12sp"
+            app:layout_constraintTop_toBottomOf="@id/filterDataTxt"
+            android:id="@+id/warnText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="italic"
+            android:text="@string/warn_main_1"/>
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
             android:paddingTop="10dp"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/filterDataTxt"
+            app:layout_constraintTop_toBottomOf="@id/warnText"
             android:id="@+id/nmKaryawanTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama karyawan"/>
+            android:text="@string/karyawan_name"/>
 
 
         <TextView
+            app:layout_constraintStart_toStartOf="parent"
             android:paddingTop="10dp"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/nmKaryawanTxt"
             android:id="@+id/usiaTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Usia"/>
+            android:text="@string/usia"/>
 
 
         <TextView
+            app:layout_constraintStart_toStartOf="parent"
             android:paddingTop="10dp"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/usiaTxt"
             android:id="@+id/tglMskKrjTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tgl Masuk Kerja"/>
+            android:text="@string/tgl_msk_kerja"/>
 
 
         <EditText
-            android:hint="nama karyawan"
+            android:hint="@string/karyawan_name_small"
             android:layout_marginStart="20dp"
             android:id="@+id/nmKaryawanTxtET"
             app:layout_constraintStart_toEndOf="@id/nmKaryawanTxt"
@@ -88,7 +103,7 @@
         <EditText
             android:inputType="number"
             android:gravity="end"
-            android:hint="usia"
+            android:hint="@string/usia_small"
             android:id="@+id/usiaTxtET"
             app:layout_constraintStart_toStartOf="@id/nmKaryawanTxtET"
             app:layout_constraintEnd_toEndOf="@id/nmKaryawanTxtET"
@@ -98,7 +113,10 @@
 
 
         <EditText
-            android:hint="tgl masuk kerja"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:hint="@string/tgl_msk_kerja_small"
             android:id="@+id/tglMskKrjTxtET"
             app:layout_constraintEnd_toEndOf="@id/nmKaryawanTxtET"
             app:layout_constraintStart_toStartOf="@id/nmKaryawanTxtET"
@@ -115,7 +133,7 @@
             android:id="@+id/sd1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="s/d"/>
+            android:text="@string/sd"/>
 
         <TextView
             android:paddingTop="10dp"
@@ -125,7 +143,7 @@
             android:id="@+id/sd2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="s/d"/>
+            android:text="@string/sd"/>
 
         <TextView
             android:paddingTop="10dp"
@@ -135,10 +153,10 @@
             android:id="@+id/sd3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="s/d"/>
+            android:text="@string/sd"/>
 
         <EditText
-            android:hint="nama karyawan"
+            android:hint="@string/karyawan_name_small"
             android:layout_marginStart="20dp"
             android:id="@+id/nmKaryawanEndTxtET"
             app:layout_constraintStart_toEndOf="@id/sd1"
@@ -150,7 +168,7 @@
         <EditText
             android:inputType="number"
             android:gravity="end"
-            android:hint="usia"
+            android:hint="@string/usia_small"
             android:id="@+id/usiaEndTxtET"
             app:layout_constraintStart_toStartOf="@id/nmKaryawanEndTxtET"
             app:layout_constraintEnd_toEndOf="@id/nmKaryawanEndTxtET"
@@ -160,7 +178,10 @@
 
 
         <EditText
-            android:hint="tgl masuk kerja"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
+            android:hint="@string/tgl_msk_kerja_small"
             android:id="@+id/tglMskKrjEndTxtET"
             app:layout_constraintEnd_toEndOf="@id/nmKaryawanEndTxtET"
             app:layout_constraintStart_toStartOf="@id/nmKaryawanEndTxtET"
@@ -173,7 +194,7 @@
             android:layout_marginStart="20dp"
             app:layout_constraintTop_toTopOf="@id/nmKaryawanEndTxtET"
             app:layout_constraintStart_toEndOf="@id/nmKaryawanEndTxtET"
-            android:text="Search"
+            android:text="@string/search"
             android:id="@+id/searchBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -188,7 +209,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:text="New"
+                android:text="@string/novel"
                 android:id="@+id/newBtn"
                 android:layout_weight=".25"
                 android:layout_width="wrap_content"
@@ -196,7 +217,7 @@
                 android:layout_marginEnd="5dp"/>
 
             <Button
-                android:text="Edit"
+                android:text="@string/edit"
                 android:layout_weight=".25"
                 android:id="@+id/editBtn"
                 android:layout_width="wrap_content"
@@ -204,7 +225,7 @@
                 android:layout_marginEnd="5dp"/>
 
             <Button
-                android:text="Delete"
+                android:text="@string/delete"
                 android:layout_weight=".25"
                 android:id="@+id/deleteBtn"
                 android:layout_width="wrap_content"
@@ -212,7 +233,7 @@
                 android:layout_marginEnd="5dp"/>
 
             <Button
-                android:text="Close"
+                android:text="@string/close"
                 android:layout_weight=".25"
                 android:id="@+id/closeBtn"
                 android:layout_width="wrap_content"
@@ -234,7 +255,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
-                android:text="ID" />
+                android:text="@string/id" />
 
             <TextView
                 android:textStyle="bold"
@@ -243,7 +264,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
-                android:text="Nama"/>
+                android:text="@string/name"/>
 
             <TextView
                 android:textStyle="bold"
@@ -252,7 +273,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
-                android:text="Tgl Masuk Kerja"/>
+                android:text="@string/tgl_msk_kerja"/>
 
             <TextView
                 android:textStyle="bold"
@@ -261,7 +282,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight=".25"
-                android:text="Usia"/>
+                android:text="@string/usia"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.recyclerview.widget.RecyclerView

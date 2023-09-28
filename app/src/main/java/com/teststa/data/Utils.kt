@@ -1,22 +1,12 @@
 package com.teststa.data
 
+import android.app.DatePickerDialog
+import android.content.Context
+import android.widget.Toast
+import com.teststa.R
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Locale
-
-const val KARYAWAN_TBL = "Karyawan"
-const val ID_KARYAWAN_FIELD = "IDKaryawan"
-const val NM_KARYAWAN_FIELD = "NmKaryawan"
-const val TGL_MSK_KARYAWAN_FIELD = "TglMasukKerja"
-const val USIA_KARYAWAN_FIELD = "Usia"
-
-val CREATE_TBL = """
-    CREATE TABLE $KARYAWAN_TBL (
-        $ID_KARYAWAN_FIELD TEXT(30) PRIMARY KEY,
-        $NM_KARYAWAN_FIELD TEXT(30),
-        $TGL_MSK_KARYAWAN_FIELD DATE,
-        $USIA_KARYAWAN_FIELD INTEGER
-    );
-""".trimIndent()
 
 fun String.dateToUiFormat(): String {
 
@@ -29,6 +19,35 @@ fun String.dateToUiFormat(): String {
         toFormat,
         locale
     )
+}
+
+fun String.dateToUiFormatYearFourDigit(): String {
+
+    val locale = Locale("id", "ID")
+    val fromFormat = "yyyy-MM-dd"
+    val toFormat = "dd-MMM-yyyy"
+
+    return this.dateFormat(
+        fromFormat,
+        toFormat,
+        locale
+    )
+}
+
+fun alertBelumMemilihData(context: Context) {
+    alert(context, context.getString(R.string.silahkan_memilih_data))
+}
+
+fun alertEmptyOnFrom(context: Context) {
+    alert(context, context.getString(R.string.pastikan_data))
+}
+
+fun alert(context: Context, msg: String) {
+    Toast.makeText(
+        context,
+        msg,
+        Toast.LENGTH_SHORT
+    ).show()
 }
 
 fun String.dateToSqlFormat(): String {
@@ -57,29 +76,33 @@ fun String.dateFormat(fromFormat: String, toFormat: String, locale: Locale): Str
     }
 }
 
-val listOfKaryawan = listOf(
-    Karyawan(
-        "001",
-        "Andi",
-        "2012-03-02",
-        25
-    ),
-    Karyawan(
-        "002",
-        "Anto",
-        "2013-06-02",
-        24
-    ),
-    Karyawan(
-        "003",
-        "Adi",
-        "2000-05-02",
-        27
-    ),
-    Karyawan(
-        "004",
-        "Amin",
-        "2018-08-05",
-        31
-    ),
-)
+fun showDatePickerDialog(
+    context: Context,
+    onSelectedDate: (
+        sqlFormat: String,
+        uiFormat: String
+    ) -> Unit
+) {
+    val calendar = Calendar.getInstance()
+    val year = calendar.get(Calendar.YEAR)
+    val month = calendar.get(Calendar.MONTH)
+    val day = calendar.get(Calendar.DAY_OF_MONTH)
+
+    val datePickerDialog = DatePickerDialog(
+        context,
+        { _, selectedYear, selectedMonth, selectedDay ->
+            val formattedMonth = (selectedMonth + 1).toString().padStart(2, '0')
+            val sqlFormat = "$selectedYear-$formattedMonth-$selectedDay"
+            val uiFormat = sqlFormat.dateToUiFormat()
+            onSelectedDate(
+                sqlFormat,
+                uiFormat
+            )
+        },
+        year,
+        month,
+        day
+    )
+
+    datePickerDialog.show()
+}

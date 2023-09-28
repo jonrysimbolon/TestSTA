@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scroll_form_2"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Form2">
+    tools:context=".ui.Form2Activity">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:padding="20dp"
@@ -16,7 +17,7 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="25sp"
-            android:text="Form II"/>
+            android:text="@string/form2"/>
 
         <TextView
             android:textSize="22sp"
@@ -25,47 +26,58 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:text="Entry Data: "/>
+            android:text="@string/entry_data"/>
 
         <TextView
             android:paddingTop="10dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ID"/>
+            android:text="@string/id"/>
 
         <EditText
             android:inputType="number"
             android:id="@+id/idEt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            tools:ignore="LabelFor" />
 
         <TextView
             android:paddingTop="10dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nama"/>
+            android:text="@string/name"/>
 
         <EditText
             android:id="@+id/nmEt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:inputType="text"
+            tools:ignore="LabelFor" />
 
         <TextView
             android:paddingTop="10dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tgl Masuk Kerja"/>
+            android:text="@string/tgl_msk_kerja"/>
 
         <EditText
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:cursorVisible="false"
             android:id="@+id/tglEt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:inputType="text"
+            tools:ignore="LabelFor" />
 
         <TextView
-            android:text="Usia"
+            android:text="@string/usia"
             android:paddingTop="10dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
@@ -75,11 +87,13 @@
             android:inputType="number"
             android:id="@+id/usiaEt"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            tools:ignore="LabelFor" />
 
         <Button
             android:layout_marginStart="20dp"
-            android:text="Save"
+            android:text="@string/save"
             android:id="@+id/saveBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

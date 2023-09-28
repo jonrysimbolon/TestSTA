@@ -11,7 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ListUserGithub : AppCompatActivity() {
+class ListUserGithubActivity : AppCompatActivity() {
 
     private val binding: ActivityListUserGithubBinding by lazy {
         ActivityListUserGithubBinding.inflate(layoutInflater)
@@ -59,9 +59,7 @@ class ListUserGithub : AppCompatActivity() {
                         loading = false,
                         error = true
                     )
-                    binding.apply {
-                        errorTxt.text = response.message()
-                    }
+                    binding.errorTxt.text = response.message()
                 }
             }
 
@@ -71,15 +69,13 @@ class ListUserGithub : AppCompatActivity() {
                     loading = false,
                     error = true
                 )
-                binding.apply {
-                    errorTxt.text = t.message
-                }
+                binding.errorTxt.text = t.message
             }
         })
 
     }
 
-    fun manageUi(
+    private fun manageUi(
         layout: Boolean,
         loading: Boolean,
         error: Boolean

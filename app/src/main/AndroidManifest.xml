@@ -15,10 +15,10 @@
         android:theme="@style/Theme.TestSTA"
         tools:targetApi="31">
         <activity
-            android:name=".ui.Form2"
+            android:name=".ui.Form2Activity"
             android:exported="false" />
         <activity
-            android:name=".ui.ListUserGithub"
+            android:name=".ui.ListUserGithubActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity"

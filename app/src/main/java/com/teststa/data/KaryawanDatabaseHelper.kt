@@ -5,6 +5,14 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.teststa.data.Variable.CREATE_TBL
+import com.teststa.data.Variable.DEFAULT_DATE_DB
+import com.teststa.data.Variable.ID_KARYAWAN_FIELD
+import com.teststa.data.Variable.KARYAWAN_TBL
+import com.teststa.data.Variable.NM_KARYAWAN_FIELD
+import com.teststa.data.Variable.TGL_MSK_KARYAWAN_FIELD
+import com.teststa.data.Variable.USIA_KARYAWAN_FIELD
+import com.teststa.data.Variable.listOfKaryawan
 
 class KaryawanDatabaseHelper(context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
@@ -28,7 +36,15 @@ class KaryawanDatabaseHelper(context: Context) :
         // Handle database schema upgrades if needed
     }
 
-    fun insertToKaryawanTbl(db: SQLiteDatabase, karyawan: Karyawan) {
+    fun insertUpdateToKaryawanTbl(db: SQLiteDatabase, karyawan: Karyawan, edit: Boolean){
+        if(edit){
+            editToKaryawanTbl(db, karyawan)
+        }else{
+            insertToKaryawanTbl(db,karyawan)
+        }
+    }
+
+    private fun insertToKaryawanTbl(db: SQLiteDatabase, karyawan: Karyawan) {
         val values = ContentValues().apply {
             put(ID_KARYAWAN_FIELD, karyawan.idKaryawan)
             put(NM_KARYAWAN_FIELD, karyawan.nmKaryawan)
@@ -38,7 +54,7 @@ class KaryawanDatabaseHelper(context: Context) :
         db.insert(KARYAWAN_TBL, null, values)
     }
 
-    fun editToKaryawanTbl(db: SQLiteDatabase, karyawan: Karyawan) {
+    private fun editToKaryawanTbl(db: SQLiteDatabase, karyawan: Karyawan) {
         val values = ContentValues().apply {
             put(NM_KARYAWAN_FIELD, karyawan.nmKaryawan)
             put(TGL_MSK_KARYAWAN_FIELD, karyawan.tglMasukKerja)
@@ -87,7 +103,7 @@ class KaryawanDatabaseHelper(context: Context) :
             }
         }
 
-        if (tglStart.isNotEmpty() && tglEnd.isNotEmpty()) {
+        if (tglStart != DEFAULT_DATE_DB && tglEnd != DEFAULT_DATE_DB) {
             selectionBuilder.append("$TGL_MSK_KARYAWAN_FIELD BETWEEN ?")
             selectionArgs.add(tglStart)
             selectionBuilder.append(" AND ?")
