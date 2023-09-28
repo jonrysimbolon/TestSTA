@@ -63,48 +63,39 @@ class KaryawanDatabaseHelper(context: Context) :
         val result = mutableListOf<Karyawan>()
         val selectionBuilder = StringBuilder()
         val selectionArgs = mutableListOf<String>()
-        if (nmStart.isNotEmpty()) {
-            selectionBuilder.append("$NM_KARYAWAN_FIELD >= ?")
+
+        if (nmStart.isNotEmpty() && nmEnd.isNotEmpty()) {
+            selectionBuilder.append("$NM_KARYAWAN_FIELD BETWEEN")
+            selectionBuilder.append(" ?")
             selectionArgs.add(nmStart)
-        }
-
-        if (nmEnd.isNotEmpty()) {
-            if (selectionBuilder.isNotEmpty()) {
-                selectionBuilder.append(" AND ")
-            }
-            selectionBuilder.append("$NM_KARYAWAN_FIELD <= ?")
+            selectionBuilder.append(" AND ")
+            selectionBuilder.append(" ?")
             selectionArgs.add(nmEnd)
-        }
 
-        if (usiaStart.isNotEmpty()) {
-            if (selectionBuilder.isNotEmpty()) {
+            if (usiaStart.isNotEmpty() && usiaEnd.isNotEmpty()) {
                 selectionBuilder.append(" AND ")
             }
-            selectionBuilder.append("$USIA_KARYAWAN_FIELD >= ?")
+        }
+
+        if (usiaStart.isNotEmpty() && usiaEnd.isNotEmpty()) {
+            selectionBuilder.append("$USIA_KARYAWAN_FIELD BETWEEN")
+            selectionBuilder.append(" ?")
             selectionArgs.add(usiaStart)
-        }
-
-        if (usiaEnd.isNotEmpty()) {
-            if (selectionBuilder.isNotEmpty()) {
-                selectionBuilder.append(" AND ")
-            }
-            selectionBuilder.append("$USIA_KARYAWAN_FIELD <= ?")
+            selectionBuilder.append(" AND ")
+            selectionBuilder.append(" ?")
             selectionArgs.add(usiaEnd)
-        }
 
-        if (tglStart.isNotEmpty()) {
-            if (selectionBuilder.isNotEmpty()) {
+            if (tglStart.isNotEmpty() && tglEnd.isNotEmpty()) {
                 selectionBuilder.append(" AND ")
             }
-            selectionBuilder.append("$TGL_MSK_KARYAWAN_FIELD >= ?")
+        }
+
+        if (tglStart.isNotEmpty() && tglEnd.isNotEmpty()) {
+            selectionBuilder.append("$TGL_MSK_KARYAWAN_FIELD BETWEEN")
+            selectionBuilder.append(" ?")
             selectionArgs.add(tglStart)
-        }
-
-        if (tglEnd.isNotEmpty()) {
-            if (selectionBuilder.isNotEmpty()) {
-                selectionBuilder.append(" AND ")
-            }
-            selectionBuilder.append("$TGL_MSK_KARYAWAN_FIELD <= ?")
+            selectionBuilder.append(" AND ")
+            selectionBuilder.append(" ?")
             selectionArgs.add(tglEnd)
         }
 

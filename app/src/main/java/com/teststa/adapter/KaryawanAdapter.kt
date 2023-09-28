@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teststa.base.BaseRecyclerViewAdapter
 import com.teststa.data.Karyawan
+import com.teststa.data.dateToUiFormat
 import com.teststa.databinding.ItemKaryawanBinding
 
 class KaryawanViewHolder(
@@ -19,7 +20,7 @@ class KaryawanViewHolder(
         binding.apply {
             idTxt.text = item.idKaryawan
             nmKaryawanTxt.text = item.nmKaryawan
-            tglMskKrjTxt.text = item.tglMasukKerja
+            tglMskKrjTxt.text = item.tglMasukKerja.dateToUiFormat()
             usiaTxt.text = item.usia.toString()
         }
     }
