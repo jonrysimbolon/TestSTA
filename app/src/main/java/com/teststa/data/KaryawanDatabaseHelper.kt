@@ -60,16 +60,15 @@ class KaryawanDatabaseHelper(context: Context) :
         tglStart: String,
         tglEnd: String
     ): List<Karyawan> {
+
         val result = mutableListOf<Karyawan>()
         val selectionBuilder = StringBuilder()
         val selectionArgs = mutableListOf<String>()
 
         if (nmStart.isNotEmpty() && nmEnd.isNotEmpty()) {
-            selectionBuilder.append("$NM_KARYAWAN_FIELD BETWEEN")
-            selectionBuilder.append(" ?")
+            selectionBuilder.append("$NM_KARYAWAN_FIELD BETWEEN ?")
             selectionArgs.add(nmStart)
-            selectionBuilder.append(" AND ")
-            selectionBuilder.append(" ?")
+            selectionBuilder.append(" AND ?")
             selectionArgs.add(nmEnd)
 
             if (usiaStart.isNotEmpty() && usiaEnd.isNotEmpty()) {
@@ -78,11 +77,9 @@ class KaryawanDatabaseHelper(context: Context) :
         }
 
         if (usiaStart.isNotEmpty() && usiaEnd.isNotEmpty()) {
-            selectionBuilder.append("$USIA_KARYAWAN_FIELD BETWEEN")
-            selectionBuilder.append(" ?")
+            selectionBuilder.append("$USIA_KARYAWAN_FIELD BETWEEN ?")
             selectionArgs.add(usiaStart)
-            selectionBuilder.append(" AND ")
-            selectionBuilder.append(" ?")
+            selectionBuilder.append(" AND ?")
             selectionArgs.add(usiaEnd)
 
             if (tglStart.isNotEmpty() && tglEnd.isNotEmpty()) {
@@ -91,11 +88,9 @@ class KaryawanDatabaseHelper(context: Context) :
         }
 
         if (tglStart.isNotEmpty() && tglEnd.isNotEmpty()) {
-            selectionBuilder.append("$TGL_MSK_KARYAWAN_FIELD BETWEEN")
-            selectionBuilder.append(" ?")
+            selectionBuilder.append("$TGL_MSK_KARYAWAN_FIELD BETWEEN ?")
             selectionArgs.add(tglStart)
-            selectionBuilder.append(" AND ")
-            selectionBuilder.append(" ?")
+            selectionBuilder.append(" AND ?")
             selectionArgs.add(tglEnd)
         }
 
